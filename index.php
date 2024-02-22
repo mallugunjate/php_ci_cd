@@ -12,7 +12,8 @@
 
         <?php
         echo "Hello World! Lets build CI/CD pipeline";
-        echo phpinfo();
+	echo phpinfo();
+	echo phpinfo();
         ?>
     </div>
 </body>
