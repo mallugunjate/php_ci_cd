@@ -14,6 +14,7 @@
         echo "Hello World! Lets build CI/CD pipeline - modified";
         echo "<br>";
         echo "Welcome to CI/CD demo";
+        echo phpinfo();
         ?>
     </div>
 </body>
