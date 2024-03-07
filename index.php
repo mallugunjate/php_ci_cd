@@ -12,6 +12,7 @@
         <h1> Hello WOrld!</h1>
         <?php
         echo "Hello World! Lets build CI/CD pipeline - modified";
+        echo "<br>";
         echo "Welcome to CI/CD demo";
         ?>
     </div>
