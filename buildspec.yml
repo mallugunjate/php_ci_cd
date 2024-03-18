@@ -1,23 +1,25 @@
+
 version: 0.2
 
 phases:
   install:
     runtime-versions:
       php: 8.2
+    commands:
+      # Update Composer to the latest version
+      - composer self-update
+      # Install Composer dependencies
+      - composer install --no-interaction --prefer-dist --optimize-autoloader
   pre_build:
     commands:
-      - echo "Setting up dependencies..."
-      # You can add any pre-build commands here, such as installing Composer dependencies.
-      # Example:
-      # - composer install
+      # Optionally, you can run any pre-build tasks here
+      # For example, clearing caches, setting up configurations, etc.
   build:
     commands:
-      - echo "Building your PHP application..."
-      # Add your build commands here.
+      # Run PHPUnit tests
+      - vendor/bin/phpunit
+      # Optionally, you can run additional build tasks here
   post_build:
     commands:
-      - echo "Build completed successfully!"
-      # Add any post-build commands here, such as running tests or deploying.
-      # Example:
-      # - phpunit
-      # - aws deploy command or any other deployment steps
+      # Optionally, you can perform post-build tasks here
+      # For example, deploying your application to AWS Elastic Beanstalk or S3
