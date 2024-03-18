@@ -14,6 +14,7 @@ phases:
     commands:
       - echo "Building your PHP application..."
       # Add your build commands here.
+      - phpunit
   post_build:
     commands:
       - echo "Build completed successfully!"
