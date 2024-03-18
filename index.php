@@ -11,7 +11,7 @@
     <div>
         <h1> Hello World!</h1>
         <?php
-        echo "Hello World! Lets build CI/CD pipeline - updated"
+        echo "Hello World! Lets build CI/CD pipeline - Added Simple Notification";
         echo "<br>";
         echo "Welcome to CI/CD demo";
         echo phpinfo();
