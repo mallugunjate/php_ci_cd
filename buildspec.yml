@@ -4,21 +4,25 @@ phases:
   install:
     runtime-versions:
       php: 8.2
-  pre_build:
     commands:
-      - echo "Setting up dependencies..."
-      # You can add any pre-build commands here, such as installing Composer dependencies.
-      # Example:
-      # - composer install
+      - echo "PHP Version ⬇"
+      - php -v
+      - echo "Initiation of build 🏠"
+      - echo "Installing Composer 🎺"
+      - curl -sS https://getcomposer.org/installer | php
+      - mv composer.phar /usr/local/bin/composer
+      - echo "Installing dependencies 📦"
+      - composer install
+      # Add any other necessary installation steps here
+
   build:
     commands:
-      - echo "Building your PHP application..."
-      # Add your build commands here.
-      - phpunit
-  post_build:
-    commands:
-      - echo "Build completed successfully!"
-      # Add any post-build commands here, such as running tests or deploying.
+      # Run your tests, linters, and other code quality checks
       # Example:
-      # - phpunit
-      # - aws deploy command or any other deployment steps
+      - echo "Running PHPUnit tests 🧪"
+      - phpunit
+      # Add more commands as needed
+
+artifacts:
+  files:
+    - '**/*'  # Include all files in the build artifact
