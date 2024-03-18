@@ -9,7 +9,7 @@
 
 <body>
     <div>
-        <h1> Hello WOrld!</h1>
+        <h1> Hello World!</h1>
         <?php
         echo "Hello World! Lets build CI/CD pipeline - updated";
         echo "<br>";
