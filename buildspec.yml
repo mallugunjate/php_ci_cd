@@ -1,4 +1,3 @@
-
 version: 0.2
 
 phases:
@@ -6,19 +5,22 @@ phases:
     runtime-versions:
       php: 8.2
     commands:
-      # Update Composer to the latest version
-      - composer self-update
-      # Install Composer dependencies
-      - composer install --no-interaction --prefer-dist --optimize-autoloader
+      # Install PHPUnit manually
+      - wget -O phpunit https://phar.phpunit.de/phpunit-9.phar
+      - chmod +x phpunit
+      # Optionally, you can move phpunit to a directory in your $PATH
+      - mv phpunit /usr/local/bin/phpunit
+
   pre_build:
     commands:
       # Optionally, you can run any pre-build tasks here
       # For example, clearing caches, setting up configurations, etc.
+
   build:
     commands:
       # Run PHPUnit tests
-      - vendor/bin/phpunit
-      # Optionally, you can run additional build tasks here
+      - phpunit --configuration phpunit.xml
+
   post_build:
     commands:
       # Optionally, you can perform post-build tasks here
