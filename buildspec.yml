@@ -11,7 +11,7 @@ phases:
       - echo "Installing Composer 🎺"
       - curl -sS https://getcomposer.org/installer | php
       - mv composer.phar /usr/local/bin/composer
-      - echo "Installing dependencies 📦"
+      - echo "Installing dependencies"
       - composer install
       # Add any other necessary installation steps here
 
