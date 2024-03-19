@@ -12,7 +12,7 @@
     <div>
         <h1> Hello World!</h1>
         <?php
-        echo "<div class='hello-world'>Hello World! Lets build CI/CD pipeline</div>"
+        echo "<div class='hello-world'>Hello World! Lets build CI/CD pipeline</div>";
         echo "<br>";
         echo "Welcome to CI/CD demo";
         echo phpinfo();
