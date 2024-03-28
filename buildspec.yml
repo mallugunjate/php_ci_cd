@@ -1,23 +1,35 @@
 version: 0.2
-
+env:
+  secrets-manager:
+    LOGIN: local/sonar:sonartoken
+    HOST: local/sonar:HOST
+    Organization: local/sonar:Organization
+    Project: local/sonar:Project
 phases:
   install:
+    commands:
+      - echo "Install phase ..."
     runtime-versions:
       php: 8.2
   pre_build:
     commands:
-      - echo "Setting up dependencies..."
-      # You can add any pre-build commands here, such as installing Composer dependencies.
-      # Example:
-      # - composer install
+      - echo "Pre build phase ..."
+      - apt-get update
+      - apt-get install -y jq
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+      - echo "Current path is >>>"
+      - sh $pwd
+      - unzip ./sonar-scanner-cli-4.7.0.2747-linux.zip
+      - ls $pwd
+      - export PATH=$PATH:./sonar-scanner-4.7.0.2747-linux/bin/
   build:
     commands:
-      - echo "Building your PHP application..."
-      # Add your build commands here.
+      - echo "Build phase ..."
+      - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
+      - sleep 5
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
+      - cat result.json
+      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
   post_build:
     commands:
-      - echo "Build completed successfully!"
-      # Add any post-build commands here, such as running tests or deploying.
-      # Example:
-      # - phpunit
-      # - aws deploy command or any other deployment steps
+      - echo "Post build phase ..."
